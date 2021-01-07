@@ -15,3 +15,10 @@ function fizzbuzz() {
         }
     }
 }
+
+let a = 30;
+let b = 50;
+function greaterThanPlay() {
+    a > b ? true : false;
+}
+greaterThanPlay();
