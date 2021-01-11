@@ -2,29 +2,29 @@
 and logs a different string depending on the type/value of the argument that is passed to it. 
 The string it logs should be one of the followin*/
 
-function logType(param) {
-    if (typeof param === "undefined") {
-        console.log("undefined!");
-    } else if (typeof param === "null") {
+function logType(val) {
+    if (val === null) {
         console.log("null!");
-    } else if (typeof param === "number") {
-        console.log("number!");
-    } else if (typeof param === "NaN") {
-        console.log("not a number!");
-    } else if (typeof param === "string") {
-        console.log("string!");
-    } else if (typeof param === "boolean") {
-        console.log("boolean!");
-    } else if (typeof param === "bigint") {
-        console.log("bigint!!");
-    } else if (typeof param === "function") {
-        console.log("function!");
-    } else if (typeof param === "object") {
-        console.log("object!");
-    } else if (typeof param === "array") {
+    } else if (Array.isArray(val)) {
         console.log("array!");
+    } else if (typeof val == "object") {
+        console.log("object!");
+    } else if (typeof val == "bigint") {
+        console.log("bigint!");
+    } else if (Number.isNaN(val)) {
+        console.log("not a number!");
+    } else if (typeof val == "number") {
+        console.log("number!");
+    } else if (typeof val == "string") {
+        console.log("string!");
+    } else if (typeof val == "boolean") {
+        console.log("boolean!");
+    } else if (typeof val == "undefined") {
+        console.log("undefined!");
+    } else if (typeof val == "function") {
+        console.log("function!");
     } else {
-        console.log("I have no idea");
+        console.log("i have no idea!");
     }
 }
 
@@ -43,16 +43,12 @@ logType(15);
 
 //NaN
 logType(0 / 0);
-console.log(isNaN(0 / 0));
 
 //string test
 logType("I am learning coding!");
 
 //boolean test
 logType(true);
-
-//bigInt
-logType(5364546431345n);
 
 //function
 function test(a, b) {
@@ -71,9 +67,6 @@ logType(objTest);
 var d = [1, 2, 3];
 logType(d);
 
-//isArray method
-console.log(Array.isArray(d));
-
 /*2- Copy the following object into your code:*/
 
 var a = {
@@ -82,15 +75,12 @@ var a = {
     "New York": "USA",
 };
 
-for (var property in a) {
-    console.log(`${property}: ${a[property]}`);
-    // console.log(property, a[property]);
-}
-
 var b = {};
-b.Germany = "Berlin";
-b.France = "Paris";
-b["New York"] = "USA";
+
+for (var city in a) {
+    var country = a[city];
+    b[country] = city;
+}
 
 console.log(b);
 
@@ -100,12 +90,4 @@ console.log(b);
 
 for (var i = 10; i > 0; i--) {
     console.log(i);
-}
-
-// //while ...
-
-var i = 10;
-while (i > 0) {
-    console.log(i);
-    i--;
 }
