@@ -9,7 +9,7 @@ header {
     padding: 10px;
 }
 
-.pseudo-cell {
+.first-cell {
     width: 50%;
     display: table-cell;
 }
@@ -32,6 +32,7 @@ header {
     color: white;
     text-align: center;
     padding: 300px 0px;
+    filter: brightness(0.9);
 }
 
 .heading-primary {
@@ -42,6 +43,25 @@ header {
     font-style: italic;
     letter-spacing: 1.5px;
     margin-bottom: 20px;
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+}
+
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translate(-300px);
+    }
+
+    80% {
+        transform: translate(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0px);
+    }
 }
 
 .button {
@@ -90,4 +110,10 @@ header {
     display: inline-block;
     margin-left: 10px;
     width: 80%;
+}
+
+@media screen and (max-width: 1200px) {
+    .main-container {
+        height: 650px;
+    }
 }
