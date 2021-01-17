@@ -1,0 +1,156 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: bisque;
+}
+
+header {
+    text-align: center;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+main {
+    float: left;
+}
+
+aside {
+    float: right;
+}
+
+img {
+    height: 550px;
+}
+
+#tomato {
+    background-color: pink;
+    font-size: 60px;
+    padding: 20px;
+    animation: move 6s alternate infinite;
+}
+
+.vampire {
+    position: fixed;
+    top: 50vh;
+    left: 40vw;
+    font-size: 250px;
+    transition: transform 3s ease-in;
+    z-index: 1;
+}
+
+.vampire:hover {
+    transform: rotate(650deg) scale(4);
+}
+
+#good {
+    background-color: purple;
+}
+
+.things {
+    background-color: green;
+}
+
+div.first-div#quotes {
+    background-color: gold;
+}
+
+/* immediate child element selector */
+div > p {
+    border: 2px dotted black;
+}
+
+li.make-blue {
+    background-color: blue;
+    color: white;
+}
+
+/* immediately adjacent sibling selector */
+.make-blue + li {
+    font-family: "Comic Sans MS";
+}
+
+/* attribute selector */
+input[name="lastname"] {
+    background-color: red;
+}
+
+img[alt="a really good ducky"] {
+    border: 6px solid salmon;
+    animation: slide 3s forwards;
+}
+
+li:first-child {
+    font-size: 6px;
+}
+
+li:last-child {
+    background-color: black;
+    color: yellow;
+    border: 2px dashed chartreuse;
+}
+
+div:hover,
+h1:hover {
+    background-color: cyan;
+    border: 2px solid magenta;
+}
+
+a:active {
+    background-color: yellow;
+    color: red;
+}
+
+a:visited {
+    color: green;
+}
+
+h1:before {
+    content: "🦧";
+    font-size: 30px;
+}
+
+div:after {
+    content: "MAGICAL";
+    background-color: white;
+    color: black;
+    font-size: 20px;
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(-900px) rotate(270deg);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes move {
+    0% {
+        transform: translateX(0);
+    }
+    20% {
+        transform: translateX(400px) translateY(400px);
+    }
+    30% {
+        transform: translateX(800px) translateY(-400px);
+    }
+    60% {
+        transform: translateX(200px) translateY(100px);
+    }
+    90% {
+        transform: translateX(400px) translateY(-600px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
