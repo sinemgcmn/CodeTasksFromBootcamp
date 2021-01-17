@@ -1,0 +1,24 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+#ticker {
+    overflow: hidden;
+    position: relative;
+    height: 1.5em;
+}
+
+#headlines {
+    white-space: nowrap;
+    position: absolute;
+    top: 0;
+    left: 100%;
+}
+
+#headlines a {
+    padding: 25px;
+}
