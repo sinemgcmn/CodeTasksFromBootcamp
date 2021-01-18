@@ -1,13 +1,17 @@
-(function () {
-    var box = document.getElementById("box");
-    var move = document.getElementById("move");
-    var back = document.getElementById("moveback");
+var overlay = document.getElementsByClassName("overlay");
+var sidenav = document.getElementsByClassName("side-nav");
+var hamburger = document.getElementById("menu-button");
+var p = document.getElementById("move");
 
-    move.addEventListener("click", function () {
-        box.classList.add("on");
-    });
+hamburger.addEventListener("click", function () {
+    overlay[0].classList.add("on");
+    sidenav[0].classList.add("on");
+});
 
-    back.addEventListener("click", function () {
-        box.classList.remove("on");
-    });
-})();
+p.addEventListener("click", function () {
+    overlay[0].classList.remove("on");
+});
+
+overlay.addEventListener("click", function () {
+    overlay[0].classList.remove("on");
+});

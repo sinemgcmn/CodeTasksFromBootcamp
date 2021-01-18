@@ -26,52 +26,6 @@ header {
     height: 30px;
 }
 
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
-    z-index: 2;
-    /* visibility: hidden; */
-}
-
-.on {
-    transition-property: transform;
-    transition-duration: 2s;
-    transform: translateX(200%);
-}
-
-.side-nav {
-    display: block;
-    float: right;
-    position: relative;
-    right: 0;
-    top: 0;
-    height: 100%;
-    width: 20%;
-    background-color: white;
-    text-align: center;
-
-    /* visibility: hidden; */
-    transition: 2s;
-}
-
-.side-nav a {
-    display: block;
-    padding: 10px 10px;
-    text-decoration: none;
-    font-size: 20px;
-}
-
-#quit {
-    float: right;
-    position: relative;
-    top: 0;
-    right: 0;
-}
-
 .banner {
     background: url("assets/spices.jpg") no-repeat;
     background-size: cover;
@@ -162,4 +116,44 @@ header {
     .main-container {
         height: 650px;
     }
+}
+
+.side-nav {
+    background-color: white;
+    height: 100%;
+    width: 10%;
+    padding: 20px 20px;
+    float: right;
+}
+
+.side-nav a {
+    display: block;
+    padding: 10px 10px;
+    text-decoration: none;
+    font-size: 20px;
+    visibility: hidden;
+}
+
+#topx {
+    float: right;
+    position: absolute;
+    top: 0;
+    left: 98%;
+    padding: 0 0;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 2;
+    visibility: hidden;
+}
+
+.on {
+    left: 100%;
+    transform: translateX(-200%);
 }
