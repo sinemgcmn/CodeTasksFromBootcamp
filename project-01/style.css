@@ -125,7 +125,6 @@ header {
     padding: 20px 20px;
     float: right;
     visibility: hidden;
-    transform: translateX(100%);
 }
 
 .side-nav a {
@@ -152,17 +151,12 @@ header {
     background-color: rgba(0, 0, 0, 0.3);
     z-index: 2;
     visibility: hidden;
-    transform: translateX(100%);
 }
 
 .on {
-    transition-delay: 2s;
     transition-property: transform;
-    transform: translateX(0%);
-}
-
-.exit {
-    transition-delay: 2s;
-    transition-property: transform;
-    transform: translateX(100%);
+    transition-duration: 2s;
+    transform: translateX(-20vp);
+    transition: 2s;
+    visibility: visible;
 }
