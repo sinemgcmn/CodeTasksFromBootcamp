@@ -1,17 +1,24 @@
-var overlay = document.getElementsByClassName("overlay");
-var sidenav = document.getElementsByClassName("side-nav");
-var hamburger = document.getElementById("menu-button");
-var p = document.getElementById("move");
+(function () {
+    var hamburger = document.getElementById("menu-button");
+    var overlay = document.getElementsByClassName("overlay");
+    var sidenav = document.getElementsByClassName("side-nav");
+    var p = document.getElementById("move");
+    var quit = document.getElementById("topx");
 
-hamburger.addEventListener("click", function () {
-    overlay[0].classList.add("on");
-    sidenav[0].classList.add("on");
-});
+    hamburger.addEventListener("click", function () {
+        overlay.classList.remove("on");
+        sidenav.classList.remove("on");
+    });
 
-p.addEventListener("click", function () {
-    overlay[0].classList.remove("on");
-});
+    p.addEventListener("click", function () {
+        overlay.classList.remove("on");
+    });
 
-overlay.addEventListener("click", function () {
-    overlay[0].classList.remove("on");
-});
+    overlay.addEventListener("click", function () {
+        overlay.classList.remove("on");
+    });
+
+    quit.addEventListener("click", function () {
+        overlay.classList.remove("on");
+    });
+})();

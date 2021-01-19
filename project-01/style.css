@@ -124,6 +124,7 @@ header {
     width: 10%;
     padding: 20px 20px;
     float: right;
+    visibility: hidden;
 }
 
 .side-nav a {
@@ -131,7 +132,6 @@ header {
     padding: 10px 10px;
     text-decoration: none;
     font-size: 20px;
-    visibility: hidden;
 }
 
 #topx {
@@ -154,6 +154,7 @@ header {
 }
 
 .on {
-    left: 100%;
+    transition-property: transform;
     transform: translateX(-200%);
+    visibility: visible;
 }
