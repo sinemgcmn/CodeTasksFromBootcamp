@@ -1,0 +1,58 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.big {
+    display: flex;
+    flex-direction: row;
+}
+
+.container {
+    display: flex;
+    height: 200px;
+    width: 200px;
+}
+
+.grey {
+    background-color: grey;
+    justify-content: flex-end;
+}
+
+.black {
+    background-color: black;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.blue {
+    background-color: blue;
+    align-items: flex-end;
+}
+
+.purple {
+    background-color: purple;
+}
+
+/***miniboxes***/
+
+.minibox {
+    height: 100px;
+    width: 100px;
+}
+
+.orange {
+    background-color: orange;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.green {
+    background-color: green;
+}
+
+.pink {
+    background-color: pink;
+}
