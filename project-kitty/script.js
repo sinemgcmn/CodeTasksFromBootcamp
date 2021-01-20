@@ -3,18 +3,20 @@
     var dots = document.querySelectorAll(".dots div");
     var currentKitty = 0;
     var total = kitties.length;
+    var timer; // will correct this
 
     /* FIRST PART */
 
-    var timer = setTimeout(function () {
-        console.log("Hello");
-    }, 3000);
-
-    function moveKitties() {
+    function moveKitties(newKitty) {
         kitties[currentKitty].classList.remove("onscreen");
         kitties[currentKitty].classList.add("exit");
         dots[currentKitty].classList.remove("on"); //white is moving
         currentKitty++;
+
+        if (typeof newKitty != "undefined") {
+            currentKitty = newKitty;
+        }
+
         if (currentKitty >= total) {
             currentKitty = 0;
         }
@@ -25,6 +27,12 @@
     }
     setTimeout(moveKitties, 5000);
 
+    document.addEventListener("transitionend", function (event) {
+        if (event.target.classList == "exit") {
+            event.target.classList.remove("exit");
+        }
+    });
+
     /* SECOND PART -CLICK*/
 
     /* With the below one I know which one is clicked anymore */
@@ -33,17 +41,12 @@
         dots[i].addEventListener("click", function (e) {
             for (var i = 0; i < dots.length; i++) {
                 if (dots[i] == e.target) {
-                    console.log(i);
+                    var newKitty = i;
+                    moveKitties(newKitty);
                     break;
                 }
             }
             clearTimeout(timer);
         });
     }
-
-    document.addEventListener("transitionend", function (event) {
-        if (event.target.classList == "exit") {
-            event.target.classList.remove("exit");
-        }
-    });
 })();
