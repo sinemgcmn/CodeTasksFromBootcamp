@@ -23,3 +23,22 @@
     transition-property: transform;
     transition-duration: 3s;
 }
+
+.dots {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-content: center;
+}
+
+.dot {
+    border: black solid;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+}
+
+.on {
+    background-color: white;
+}

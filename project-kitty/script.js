@@ -1,17 +1,19 @@
 (function () {
     var kitties = document.querySelectorAll("#kitties img");
+    var dots = document.querySelectorAll(".dots div");
     var currentKitty = 0;
     var total = kitties.length;
-    console.log("kitties: ", kitties);
 
     function moveKitties() {
         kitties[currentKitty].classList.remove("onscreen");
         kitties[currentKitty].classList.add("exit");
+        dots[currentKitty].classList.remove("on"); //white is moving
         currentKitty++;
         if (currentKitty >= total) {
             currentKitty = 0;
         }
-        kitties[currentKitty].classList.add("onscreen");
+        kitties[currentKitty].classList.add("onscreen"); // kitty continue
+        dots[currentKitty].classList.add("on"); //kitty continue
         console.log(currentKitty);
         setTimeout(moveKitties, 5000);
     }
