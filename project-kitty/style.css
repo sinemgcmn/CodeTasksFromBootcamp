@@ -12,13 +12,13 @@
     transform: translateX(100%);
 }
 
-#kitties img onscreen {
+#kitties img.onscreen {
     transform: translateX(0%);
     transition-property: transform;
     transition-duration: 3s;
 }
 
-#kitties img exit {
+#kitties img.exit {
     transform: translateX(-100%);
     transition-property: transform;
     transition-duration: 3s;
