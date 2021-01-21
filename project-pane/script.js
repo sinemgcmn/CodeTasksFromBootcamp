@@ -6,7 +6,7 @@ var initialXPositionOfSlider = sliderJQ.offset().left;
 var distance = 0;
 var isMoving = false;
 
-sliderJQ.mousedown(function (e) {
+sliderJQ.mousedown(function () {
     isMoving = true;
     containerJQ.mousemove(function (e) {
         if (isMoving) {
@@ -14,7 +14,7 @@ sliderJQ.mousedown(function (e) {
             if (x > containerJQ.width()) return false;
             distance = initialXPositionOfSlider - x;
             topJQ.css("width", initialXPositionOfSlider - distance);
-            sliderJQ.css("left", x - sliderJQ.width() / 2);
+            sliderJQ.css("left", x - sliderJQ.width());
         }
     });
 });
