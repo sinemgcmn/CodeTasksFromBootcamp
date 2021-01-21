@@ -1,0 +1,50 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.big {
+    display: grid;
+    grid-template-columns: repeat(4, 200px);
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 100px 100px;
+    grid-template-rows: 100px 100px;
+}
+
+.grey {
+    background-color: grey;
+}
+
+.black {
+    background-color: black;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.purple {
+    background-color: purple;
+}
+
+.minibox1 {
+    background-color: orange;
+    grid-column-start: 2;
+}
+
+.minibox2 {
+    background-color: yellow;
+    grid-row-start: 2;
+    grid-column-start: 2;
+}
+
+.minibox3 {
+    background-color: green;
+    grid-row-start: 2;
+}
+.minibox4 {
+    background-color: pink;
+}
