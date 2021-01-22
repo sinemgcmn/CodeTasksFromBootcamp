@@ -6,9 +6,9 @@ var initialXPositionOfSlider = sliderJQ.offset().left;
 var distance = 0;
 var isMoving = false;
 
-sliderJQ.mousedown(function () {
+sliderJQ.on("mousedown", function () {
     isMoving = true;
-    containerJQ.mousemove(function (e) {
+    containerJQ.on("mousemove", function (e) {
         if (isMoving) {
             var x = e.clientX;
             if (x > containerJQ.width()) return false;
@@ -19,10 +19,10 @@ sliderJQ.mousedown(function () {
     });
 });
 
-sliderJQ.mouseup(function (e) {
+sliderJQ.on("mouseup", function (e) {
     isMoving = false;
 });
 
-sliderJQ.mouseleave(function () {
+sliderJQ.on("mouseleave", function () {
     console.log("A mouseleave was captured on the document!");
 });
