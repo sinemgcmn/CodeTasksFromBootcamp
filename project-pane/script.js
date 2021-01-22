@@ -13,8 +13,8 @@ sliderJQ.mousedown(function () {
             var x = e.clientX;
             if (x > containerJQ.width()) return false;
             distance = initialXPositionOfSlider - x;
-            topJQ.css("width", initialXPositionOfSlider - distance);
-            sliderJQ.css("left", x - sliderJQ.width());
+            topJQ.css({ width: initialXPositionOfSlider - distance + "px" });
+            sliderJQ.css({ left: x - sliderJQ.width() });
         }
     });
 });
