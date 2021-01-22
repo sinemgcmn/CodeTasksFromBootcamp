@@ -160,3 +160,28 @@ header {
     visibility: visible;
     transition-delay: 3s;
 }
+
+#popup {
+    display: block;
+    padding: 10px;
+    height: 200px;
+    width: 500px;
+    background-color: white;
+    border-radius: 10px;
+    position: absolute;
+    top: 40%;
+    left: 32%;
+    z-index: 9;
+}
+
+#popupnote {
+    position: relative;
+    padding: 14px;
+    color: black;
+}
+
+#newx {
+    color: black;
+    float: right;
+    margin: 0 10px;
+}
