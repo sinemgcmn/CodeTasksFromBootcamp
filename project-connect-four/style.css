@@ -3,6 +3,17 @@
     /*no boxsizin this time*/
 }
 
+.connect-four {
+    display: flex;
+    height: 100px;
+    justify-content: center;
+}
+
+#connect {
+    font-size: 60px;
+    color: rgb(28, 153, 12);
+}
+
 .container {
     display: flex;
     justify-content: center;
@@ -76,7 +87,7 @@
 
 h1 {
     position: absolute;
-    left: 80px;
+    left: 170px;
     top: 160px;
     font-style: italic;
     font-size: 30px;
@@ -86,9 +97,29 @@ h1 {
 .button {
     position: absolute;
     top: 200px;
-    left: 100px;
+    left: 200px;
     width: 100px;
     height: 100px;
     border-radius: 50px;
     background-color: rgb(153, 0, 255);
+}
+
+#popup {
+    display: block;
+    padding: 10px;
+    height: 200px;
+    width: 500px;
+    background-color: rgb(234, 238, 15);
+    border-radius: 10px;
+    position: absolute;
+    top: 35%;
+    left: 32%;
+    z-index: 9;
+    font-size: 28px;
+}
+
+#x {
+    color: blue;
+    float: right;
+    margin: 0 10px;
 }

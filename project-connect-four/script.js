@@ -94,72 +94,71 @@ var column = $(".column");
 var row = $(".row");
 var currentPlayer = "player1";
 
-// //////////following the column////////////
-// $(".column").on("click", function (e) {
-//     var col = $(e.currentTarget);
-//     var slotsInCol = col.children();
-//     for (var i = slotsInCol.length - 1; i >= 0; i--) {
-//         if (
-//             !slotsInCol.eq(i).hasClass("player1") &&
-//             !slotsInCol.eq(i).hasClass("player2")
-//         ) {
-//             slotsInCol.eq(i).addClass(currentPlayer);
-//             break;
-//         }
-//     }
+//////////following the column////////////
+$(".column").on("click", function (e) {
+    var col = $(e.currentTarget);
+    var slotsInCol = col.children();
+    for (var i = slotsInCol.length - 1; i >= 0; i--) {
+        if (
+            !slotsInCol.eq(i).hasClass("player1") &&
+            !slotsInCol.eq(i).hasClass("player2")
+        ) {
+            slotsInCol.eq(i).addClass(currentPlayer);
+            break;
+        }
+    }
 
-//     console.log("i: ", i);
-//     if (i === -1) {
-//         return;
-//     }
+    console.log("i: ", i);
+    if (i === -1) {
+        return;
+    }
 
-//     /////////////////////////
+    /////////////////////////
 
-//     var slotsInRow = $(".row" + i);
-//     // console.log("slotsInRow: ", slotsInRow);
-//     // // we want to check if there was a column victory
-//     // // we want to check if there was a row victory
-//     // // this afternoon we want to check for diagonal victory...
-//     if (checkForVictory(slotsInCol)) {
+    var slotsInRow = $(".row" + i);
+    // // console.log("slotsInRow: ", slotsInRow);
+    // // // we want to check if there was a column victory
+    // // // we want to check if there was a row victory
+    // // // this afternoon we want to check for diagonal victory...
+    // if (checkForVictory(slotsInCol)) {
+    //     console.log("col victory!!!!");
+    // } else if (checkForVictory(slotsInRow)) {
+    //     // there must be a row victory
+    //     // do the victory dance!!
+    //     console.log("row victory!!!!");
+    // }
 
-//         console.log("col victory!!!!");
-//     } else if (checkForVictory(slotsInRow)) {
-//         // there must be a row victory
-//         // do the victory dance!!
-//         console.log("row victory!!!!");
-//     }
+    switchPlayer();
+});
 
-//     switchPlayer();
-// });
+//////////////////////////////////
 
-// //////////////////////////////////
+function checkForVictory(slots) {
+    console.log("checking for vicotry with these slots", slots);
+    var count = 0;
+    for (var i = 0; i < slots.length; i++) {
+        console.log(
+            "slots.eq(i).hasClass(): ",
+            slots.eq(i).hasClass(currentPlayer)
+        );
+        if (slots.eq(i).hasClass(currentPlayer)) {
+            count++;
+            console.log("count: ", count);
+            if (count === 4) {
+                return true;
+            }
+        } else {
+            count = 0;
+        }
+    }
+}
 
-// function checkForVictory(slots) {
-//     console.log("checking for vicotry with these slots", slots);
-//     var count = 0;
-//     for (var i = 0; i < slots.length; i++) {
-//         console.log(
-//             "slots.eq(i).hasClass(): ",
-//             slots.eq(i).hasClass(currentPlayer)
-//         );
-//         if (slots.eq(i).hasClass(currentPlayer)) {
-//             count++;
-//             console.log("count: ", count);
-//             if (count === 4) {
-//                 return true;
-//             }
-//         } else {
-//             count = 0;
-//         }
-//     }
-// }
+/////////////////////////////////////////
+function switchPlayer() {
+    console.log("switch the player!");
+    currentPlayer = currentPlayer === "player1" ? "player2" : "player1";
+}
 
-// /////////////////////////////////////////
-// function switchPlayer() {
-//     console.log("switch the player!");
-//     currentPlayer = currentPlayer === "player1" ? "player2" : "player1";
-// }
+///////////////reset the game////////////////////
 
-// ///////////////reset the game////////////////////
-
-// // (function () {}();
+// (function () {}();
