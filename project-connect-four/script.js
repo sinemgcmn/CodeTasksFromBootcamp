@@ -25,94 +25,99 @@ var diagArrays = [
     [23, 28, 33, 38],
 ];
 
-// var colArrays = [
-//     //column//
-//     [0, 1, 2, 3],
-//     [5, 4, 3, 2],
-//     [1, 2, 3, 4],
-//     //column//
-//     [6, 7, 8, 9],
-//     [11, 10, 9, 8],
-//     [7, 8, 9, 10],
-//     //column//
-//     [12, 13, 14, 15],
-//     [17, 16, 15, 14],
-//     [13, 14, 15, 16],
-//     //column//
-//     [18, 19, 20, 21],
-//     [23, 22, 21, 20],
-//     [19, 20, 21, 22],
-//     //column//
-//     [24, 25, 26, 27],
-//     [29, 28, 27, 26],
-//     [25, 26, 27, 28],
-//     //column//
-//     [30, 31, 32, 33],
-//     [35, 34, 33, 32],
-//     [31, 32, 33, 34],
-//     //column//
-//     [36, 37, 38, 39],
-//     [41, 40, 39, 38],
-//     [37, 38, 39, 40],
-// ];
-
-// var rowArrays = [
-//     //row//
-//     [5, 11, 17, 23],
-//     [11, 17, 23, 29],
-//     [17, 23, 29, 35],
-//     [23, 29, 35, 41],
-//     //row//
-//     [4, 10, 16, 22],
-//     [10, 16, 22, 28],
-//     [16, 22, 28, 34],
-//     [22, 28, 34, 40],
-//     //row//
-//     [3, 9, 15, 21],
-//     [9, 15, 21, 27],
-//     [15, 21, 27, 33],
-//     [21, 27, 33, 39],
-//     //row//
-//     [2, 8, 14, 20],
-//     [8, 14, 20, 26],
-//     [14, 20, 26, 32],
-//     [20, 26, 32, 38],
-//     //row//
-//     [1, 7, 13, 19],
-//     [7, 13, 19, 25],
-//     [13, 19, 25, 31],
-//     [19, 25, 31, 37],
-//     //row//
-//     [0, 6, 12, 18],
-//     [6, 12, 18, 24],
-//     [12, 18, 24, 30],
-//     [18, 24, 30, 36],
-// ];
-
 var slots = $(".slot");
 var column = $(".column");
-var row = $(".row");
+var row = $(".row0");
 var currentPlayer = "player1";
 
+// selecting slots//
 column.on("click", function (e) {
     var currentColumn = $(e.currentTarget);
     var slotsInCurrentColumn = currentColumn.children();
+    var currentRow;
     for (var i = slotsInCurrentColumn.length - 1; i >= 0; i--) {
         if (
             !slotsInCurrentColumn.eq(i).hasClass("player1") &&
             !slotsInCurrentColumn.eq(i).hasClass("player2")
         ) {
             slotsInCurrentColumn.eq(i).addClass(currentPlayer);
+            currentRow = i;
             break;
         }
     }
+    winnerCheckForRow(currentRow);
     changePlayer();
 });
 
+//change player//
 function changePlayer() {
     if (currentPlayer == "player1") {
         currentPlayer = "player2";
     } else if (currentPlayer == "player2") {
         currentPlayer = "player1";
+    }
+}
+
+function winnerCheck(slotsInCurrentColumn) {
+    winnerCheckForColumn(slotsInCurrentColumn);
+    winnerCheckForRow();
+    winnerCheckForDiagonal();
+}
+
+// function winnerCheckForDiagonal(slotsInCurrentColumn) {
+//     var counter = 0;
+//     var indexArray = [];
+//     for (var i = 0; i < slotsInCurrentColumn.length; i++) {
+//         if (slotsInCurrentColumn.eq(i).hasClass(currentPlayer)) {
+//             indexArray.push(i);
+//             counter++;
+//         }
+//         if (counter == 4 && isConsecutive(indexArray)) {
+//             console.log("winner");
+//             return true;
+//         }
+//     }
+// }
+
+function winnerCheckForColumn(slotsInCurrentColumn) {
+    var counter = 0;
+    var indexArray = [];
+    for (var i = 0; i < slotsInCurrentColumn.length; i++) {
+        if (slotsInCurrentColumn.eq(i).hasClass(currentPlayer)) {
+            indexArray.push(i);
+            counter++;
+        }
+        if (counter == 4 && isConsecutive(indexArray)) {
+            console.log("column winner");
+            return true;
+        }
+    }
+}
+
+function winnerCheckForRow(rowIndex) {
+    var indexArray = [];
+    var counter = 0;
+    for (var i = 0; i < column.length; i++) {
+        if (column.eq(i).children().eq(rowIndex).hasClass(currentPlayer)) {
+            indexArray.push(i);
+            counter++;
+        }
+        if (counter == 4 && isConsecutive(indexArray)) {
+            console.log("row winner");
+            return true;
+        }
+    }
+}
+
+function isConsecutive(array) {
+    var i = 2;
+    var d = 0;
+    while (i < array.length) {
+        d = array[i - 1] - array[i - 2];
+        if ((d === 1 || d === -1) && d === array[i] - array[i - 1]) {
+            return true;
+        }
+        i++;
+        return false;
     }
 }
