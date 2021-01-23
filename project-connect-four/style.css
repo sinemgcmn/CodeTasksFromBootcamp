@@ -1,0 +1,94 @@
+* {
+    margin: 0;
+    /*no boxsizin this time*/
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+#board {
+    display: flex;
+}
+
+.slot {
+    /* background-color: blue; */
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
+
+.hole {
+    /* background-color: antiquewhite; */
+    height: 80px;
+    width: 80px;
+    transform: translate(-30px, -30px);
+    border: 40px solid rgb(0, 110, 255);
+    border-radius: 50%;
+}
+
+/*these are the classes that js will add*/
+.player1 {
+    background-color: rgb(255, 136, 0);
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+}
+
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translate(-300px);
+    }
+
+    80% {
+        transform: translate(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0px);
+    }
+}
+
+.player2 {
+    background-color: rgb(81, 255, 0);
+    animation-name: moveInRight;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+}
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translate(300px);
+    }
+
+    80% {
+        transform: translate(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0px);
+    }
+}
+
+h1 {
+    position: absolute;
+    left: 80px;
+    top: 160px;
+    font-style: italic;
+    font-size: 30px;
+    color: rgb(17, 0, 255);
+}
+
+.button {
+    position: absolute;
+    top: 200px;
+    left: 100px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    background-color: rgb(153, 0, 255);
+}
