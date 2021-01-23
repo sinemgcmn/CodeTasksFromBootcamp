@@ -116,6 +116,7 @@ h1 {
     left: 32%;
     z-index: 9;
     font-size: 28px;
+    visibility: hidden;
 }
 
 #x {
