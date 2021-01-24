@@ -90,20 +90,16 @@ function winnerCheck(currentColumn, rowIndex) {
 }
 
 function getLocatIndex() {
-    var counter = 0;
     var locatIndex = [];
 
     for (var i = 0; i <= 6; i++) {
-        for (var j = 0; j <= 6; j++) {
+        //columns
+        for (var j = 0; j <= 5; j++) {
+            //rows
             if (column.eq(i).children().eq(j).hasClass(currentPlayer)) {
                 console.log("j:", j);
                 console.log("i: ", i);
-                if (i == 0) {
-                    locatIndex.push(j);
-                } else {
-                    locatIndex.push(i * 6 + j);
-                }
-                counter++;
+                locatIndex.push(i * 6 + j);
             }
         }
     }
@@ -113,11 +109,9 @@ function getLocatIndex() {
 
 function winnerCheckForDiagonal() {
     var locatIndex = getLocatIndex();
-    var checkCount = 1;
-    console.log(locatIndex);
     if (locatIndex.length >= 4) {
         for (var i = 0; i < diags.length; i++) {
-            checkCount = 0;
+            var checkCount = 0;
             for (var j = 0; j < locatIndex.length; j++) {
                 if ($.inArray(locatIndex[j], diags[i]) > -1) {
                     checkCount++;
