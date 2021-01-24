@@ -10,8 +10,8 @@
 }
 
 #connect {
-    font-size: 60px;
-    color: rgb(28, 153, 12);
+    font-size: 45px;
+    color: #e07a5f;
 }
 
 .container {
@@ -35,7 +35,7 @@
     height: 80px;
     width: 80px;
     transform: translate(-30px, -30px);
-    border: 40px solid rgb(0, 110, 255);
+    border: 40px solid #3d405b;
     border-radius: 50%;
 }
 @keyframes moveInUp {
@@ -55,14 +55,14 @@
 }
 /*these are the classes that js will add*/
 .player1 {
-    background-color: rgb(255, 136, 0);
+    background-color: #81b29a;
     animation-name: moveInUp;
     animation-duration: 1s;
     animation-timing-function: ease-out;
 }
 
 .player2 {
-    background-color: rgb(81, 255, 0);
+    background-color: #f2cc8f;
     animation-name: moveInUp;
     animation-duration: 1s;
     animation-timing-function: ease-out;
@@ -70,21 +70,21 @@
 
 h1 {
     position: absolute;
-    left: 170px;
-    top: 160px;
+    left: 24px;
+    top: 22px;
     font-style: italic;
-    font-size: 30px;
-    color: rgb(17, 0, 255);
+    font-size: 24px;
+    color: #3d405b;
 }
 
 .button {
     position: absolute;
-    top: 200px;
+    top: 35px;
     left: 200px;
     width: 100px;
     height: 100px;
     border-radius: 50px;
-    background-color: rgb(153, 0, 255);
+    background-color: #e07a5f;
 }
 
 #popup {
@@ -92,13 +92,13 @@ h1 {
     padding: 10px;
     height: 200px;
     width: 500px;
-    background-color: rgb(234, 238, 15);
+    background-color: #f2cc8f;
     border-radius: 10px;
     position: absolute;
-    top: 35%;
-    left: 32%;
+    top: 33%;
+    left: 33%;
     z-index: 9;
-    font-size: 28px;
+    font-size: 22px;
 }
 
 #x {

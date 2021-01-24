@@ -84,26 +84,48 @@ function changePlayer() {
 function winnerCheck(currentColumn, rowIndex) {
     return (
         winnerCheckForColumn(currentColumn.children()) ||
-        winnerCheckForRow(rowIndex)
-        // winnerCheckForDiagonal()
-        // winnerCheckForDiagonal(currentColumn, rowIndex)
+        winnerCheckForRow(rowIndex) ||
+        winnerCheckForDiagonal()
     );
 }
 
-function winnerCheckForDiagonal() {
-    var indexArray = [];
+function getLocatIndex() {
     var counter = 0;
+    var locatIndex = [];
 
-    for (var i = 0; i < diags.length; i++) {
-        for (var j = 0; j < diags.eq(i).length; j++) {
+    for (var i = 0; i <= 6; i++) {
+        for (var j = 0; j <= 6; j++) {
             if (column.eq(i).children().eq(j).hasClass(currentPlayer)) {
-                indexArray.push(6 * i + j);
+                if (i == 1) {
+                    locatIndex.push(j);
+                } else {
+                    locatIndex.push((i - 1) * 6 + j);
+                }
                 counter++;
             }
         }
     }
-    if ($.inArray(indexArray, diags) > -1) return true;
-    return false;
+
+    return locatIndex;
+}
+
+function winnerCheckForDiagonal() {
+    var locatIndex = getLocatIndex();
+    var checkCount = 1;
+
+    if (locatIndex.length >= 4) {
+        for (var i = 0; i < diags.length; i++) {
+            checkCount = 0;
+            for (var j = 0; j < locatIndex.length; j++) {
+                if ($.inArray(locatIndex[j], diags[i]) > -1) {
+                    checkCount++;
+                }
+            }
+            if (checkCount == 4) {
+                return true;
+            }
+        }
+    }
 }
 
 function winnerCheckForColumn(slotsInCurrentColumn) {
