@@ -96,10 +96,12 @@ function getLocatIndex() {
     for (var i = 0; i <= 6; i++) {
         for (var j = 0; j <= 6; j++) {
             if (column.eq(i).children().eq(j).hasClass(currentPlayer)) {
-                if (i == 1) {
+                console.log("j:", j);
+                console.log("i: ", i);
+                if (i == 0) {
                     locatIndex.push(j);
                 } else {
-                    locatIndex.push((i - 1) * 6 + j);
+                    locatIndex.push(i * 6 + j);
                 }
                 counter++;
             }
@@ -112,7 +114,7 @@ function getLocatIndex() {
 function winnerCheckForDiagonal() {
     var locatIndex = getLocatIndex();
     var checkCount = 1;
-
+    console.log(locatIndex);
     if (locatIndex.length >= 4) {
         for (var i = 0; i < diags.length; i++) {
             checkCount = 0;
