@@ -38,51 +38,34 @@
     border: 40px solid rgb(0, 110, 255);
     border-radius: 50%;
 }
-
-/*these are the classes that js will add*/
-.player1 {
-    background-color: rgb(255, 136, 0);
-    animation-name: moveInLeft;
-    animation-duration: 1s;
-    animation-timing-function: ease-out;
-}
-
-@keyframes moveInLeft {
+@keyframes moveInUp {
     0% {
         opacity: 0;
-        transform: translate(-300px);
+        transform: translateY(-300px);
     }
 
     80% {
-        transform: translate(20px);
+        transform: translateY(20px);
     }
 
     100% {
         opacity: 1;
-        transform: translate(0px);
+        transform: translateY(0px);
     }
+}
+/*these are the classes that js will add*/
+.player1 {
+    background-color: rgb(255, 136, 0);
+    animation-name: moveInUp;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
 }
 
 .player2 {
     background-color: rgb(81, 255, 0);
-    animation-name: moveInRight;
+    animation-name: moveInUp;
     animation-duration: 1s;
     animation-timing-function: ease-out;
-}
-@keyframes moveInRight {
-    0% {
-        opacity: 0;
-        transform: translate(300px);
-    }
-
-    80% {
-        transform: translate(20px);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translate(0px);
-    }
 }
 
 h1 {
@@ -116,7 +99,6 @@ h1 {
     left: 32%;
     z-index: 9;
     font-size: 28px;
-    visibility: hidden;
 }
 
 #x {
