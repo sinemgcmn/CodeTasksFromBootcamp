@@ -9,19 +9,22 @@
         for (var i = 0; i < countries.length; i++) {
             if (countries[i].toLowerCase().indexOf(userInput) === 0) {
                 matchResults.push(countries[i]);
-            } else if (matchResults.length >= 4) {
+            }
+            if (matchResults.length >= 4) {
                 break;
-            } else if (countries[i].toLowerCase().indexOf(userInput) === -1) {
-                //////
+            }
+            if (countries[i].toLowerCase().indexOf(userInput) === -1) {
+                htmlForCountries += "<p>Nothing to see here...</p>";
+                resultsContainer.html(htmlForCountries);
             }
         }
 
-        //IF the input field is empty, no countries should be shown
-        if (searchField.val() == 0) {
-            resultsContainer.addClass("display");
+        // IF the input field is empty, no countries should be shown
+        if (searchField.val() == "") {
+            resultsContainer.addClass("no-display");
         }
-        if (!searchField.val() == 0) {
-            resultsContainer.removeClass("display");
+        if (!searchField.val() == "") {
+            resultsContainer.removeClass("no-display");
         }
 
         var htmlForCountries = "";
@@ -29,18 +32,20 @@
             htmlForCountries +=
                 "<p class='country'>" + matchResults[j] + "</p>";
         }
+
         resultsContainer.html(htmlForCountries);
 
         //2-mouseover - on "p" tags (the countries)
-        resultsContainer.on("mouseover", "p", function (event) {
+        resultsContainer.on("mouseover", "p", function () {
             var p = $(".results p");
+            console.log(p);
             p.removeClass("highlight");
             $(this).addClass("highlight");
         });
 
         //3-mousedown - on "p" tags (the countries)
-        resultsContainer.on("mousedown", "p", function (event) {
-            var targ = event.target;
+        resultsContainer.on("mousedown", "p", function (e) {
+            var targ = e.target;
             var targText = targ.innerHTML;
             searchField.val(targText);
         });
@@ -48,40 +53,46 @@
         //4-keydown - on the document
         $(document).on("keydown", function (e) {
             var p = $(".results p");
-            for (var i = 0; i < p.length; i++) {
-                if (e.which == 38) {
-                    if (!p.eq(i).hasClass("highlight")) {
-                        p.eq(p.length - 1).addClass("highlight");
-                    } else if (p.eq(0).hasClass("highlight")) {
-                        return;
-                    }
+            var current = $(".highlight");
+            if (e.which == 38) {
+                if (!p.hasClass("highlight")) {
+                    p.eq(0).addClass("highlight");
                 }
-
-                if (e.which == 40) {
-                    if (!p.eq(i).hasClass("highlight")) {
-                        p.eq(0).addClass("highlight");
-                    } else if (p.eq(p.length - 1).hasClass("highlight")) {
-                        return;
-                    }
+                if (p.eq(0).hasClass("highlight")) {
+                    return;
                 }
-
-                if (e.which == 13) {
-                    var tar = p.eq(i).html();
-                    searchField.val(tar);
+                if (!p.eq(0).hasClass("highlight")) {
+                    current.removeClass("highlight");
+                    current.prev().addClass("highlight");
                 }
+            }
+            if (e.which == 40) {
+                if (!p.hasClass("highlight")) {
+                    p.eq(p.length - 1).addClass("highlight");
+                }
+                if (p.eq(p.length - 1).hasClass("highlight")) {
+                    return;
+                }
+                if (!p.eq(p.length - 1).hasClass("highlight")) {
+                    current.removeClass("highlight");
+                    current.next().addClass("highlight");
+                }
+            }
+            if (e.which == 13) {
+                searchField.val(current.html());
             }
         });
 
         //6-blur - happens on input field - this just means you've clicked OUT of an input field
         searchField.blur(function () {
             searchField.css("background-color", "darkgrey");
-            resultsContainer.addClass("display");
+            resultsContainer.addClass("no-display");
         });
 
         //5-focus - happens on input field - this just means you've clicked into an input field
         searchField.focus(function () {
-            searchField.css("background-color", "pink");
-            resultsContainer.addClass("display");
+            searchField.css("background-color", "lightblue");
+            // resultsContainer.removeClass("no-display");
         });
     });
 })([

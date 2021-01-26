@@ -5,6 +5,6 @@ body {
     background-color: yellow;
 }
 
-.display {
+.no-display {
     display: none;
 }
