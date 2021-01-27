@@ -6,7 +6,7 @@ text.on("input", function () {
     userInput = text.val();
 });
 
-function IsJsonString(userInput) {
+function isJsonString(userInput) {
     try {
         JSON.parse(String(userInput));
         alert("this is json");
@@ -16,5 +16,5 @@ function IsJsonString(userInput) {
 }
 
 button.on("click", function () {
-    IsJsonString(userInput);
+    isJsonString(userInput);
 });
