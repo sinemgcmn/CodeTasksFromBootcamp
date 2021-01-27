@@ -6,6 +6,7 @@
     searchField.on("input", function () {
         var userInput = searchField.val().toLowerCase();
         var matchResults = [];
+        var htmlForCountries = "";
         for (var i = 0; i < countries.length; i++) {
             if (countries[i].toLowerCase().indexOf(userInput) === 0) {
                 matchResults.push(countries[i]);
@@ -13,10 +14,10 @@
             if (matchResults.length >= 4) {
                 break;
             }
-            if (countries[i].toLowerCase().indexOf(userInput) === -1) {
-                htmlForCountries += "<p>Nothing to see here...</p>";
-                resultsContainer.html(htmlForCountries);
-            }
+        }
+
+        if (matchResults.length == 0) {
+            htmlForCountries = "<p>Nothing to see here...</p>";
         }
 
         // IF the input field is empty, no countries should be shown
@@ -27,73 +28,63 @@
             resultsContainer.removeClass("no-display");
         }
 
-        var htmlForCountries = "";
         for (var j = 0; j < matchResults.length; j++) {
             htmlForCountries +=
                 "<p class='country'>" + matchResults[j] + "</p>";
         }
 
         resultsContainer.html(htmlForCountries);
+    });
 
-        //2-mouseover - on "p" tags (the countries)
-        resultsContainer.on("mouseover", "p", function () {
-            var p = $(".results p");
-            console.log(p);
-            p.removeClass("highlight");
-            $(this).addClass("highlight");
-        });
+    //2-mouseover - on "p" tags (the countries)
+    resultsContainer.on("mouseover", "p", function () {
+        var p = $(".results p");
+        console.log(p);
+        p.removeClass("highlight");
+        $(this).addClass("highlight");
+    });
 
-        //3-mousedown - on "p" tags (the countries)
-        resultsContainer.on("mousedown", "p", function (e) {
-            var targ = e.target;
-            var targText = targ.innerHTML;
-            searchField.val(targText);
-        });
+    //3-mousedown - on "p" tags (the countries)
+    resultsContainer.on("mousedown", "p", function (e) {
+        var targ = e.target;
+        var targText = targ.innerHTML;
+        searchField.val(targText);
+    });
 
-        //4-keydown - on the document
-        $(document).on("keydown", function (e) {
-            var p = $(".results p");
-            var current = $(".highlight");
-            if (e.which == 38) {
-                if (!p.hasClass("highlight")) {
-                    p.eq(0).addClass("highlight");
-                }
-                if (p.eq(0).hasClass("highlight")) {
-                    return;
-                }
-                if (!p.eq(0).hasClass("highlight")) {
-                    current.removeClass("highlight");
-                    current.prev().addClass("highlight");
-                }
-            }
-            if (e.which == 40) {
-                if (!p.hasClass("highlight")) {
-                    p.eq(p.length - 1).addClass("highlight");
-                }
-                if (p.eq(p.length - 1).hasClass("highlight")) {
-                    return;
-                }
-                if (!p.eq(p.length - 1).hasClass("highlight")) {
-                    current.removeClass("highlight");
-                    current.next().addClass("highlight");
-                }
-            }
-            if (e.which == 13) {
-                searchField.val(current.html());
-            }
-        });
+    //4-keydown - on the document
+    $(document).on("keydown", function (e) {
+        var p = $(".results p");
+        if (e.which == 38 && !p.hasClass("highlight")) {
+            p.eq(0).addClass("highlight");
+            return;
+        }
+        if (e.which == 40 && !p.hasClass("highlight")) {
+            p.eq(p.length - 1).addClass("highlight");
+            return;
+        }
+        var current = $(".highlight");
 
-        //6-blur - happens on input field - this just means you've clicked OUT of an input field
-        searchField.blur(function () {
-            searchField.css("background-color", "darkgrey");
-            resultsContainer.addClass("no-display");
-        });
+        if (e.which == 38) {
+            current.removeClass("highlight");
+            current.prev().addClass("highlight");
+        } else if (e.which == 40) {
+            current.removeClass("highlight");
+            current.next().addClass("highlight");
+        } else if (e.which == 13) {
+            searchField.val(current.html());
+        }
+    });
 
-        //5-focus - happens on input field - this just means you've clicked into an input field
-        searchField.focus(function () {
-            searchField.css("background-color", "lightblue");
-            // resultsContainer.removeClass("no-display");
-        });
+    //6-blur - happens on input field - this just means you've clicked OUT of an input field
+    searchField.blur(function () {
+        searchField.css("background-color", "darkgrey");
+        resultsContainer.addClass("no-display");
+    });
+
+    //5-focus - happens on input field - this just means you've clicked into an input field
+    searchField.focus(function () {
+        searchField.css("background-color", "lightblue");
+        // resultsContainer.removeClass("no-display");
     });
 })([
     "Afghanistan",
@@ -136,7 +127,7 @@
     "Comoros",
     "Congo",
     "Costa Rica",
-    "Côte D'Ivoire",
+    "CÃƒÂ´te D'Ivoire",
     "Croatia",
     "Cuba",
     "Cyprus",
@@ -188,7 +179,7 @@
     "Kiribati",
     "Kuwait",
     "Kyrgyzstan",
-    "Lao People’s Democratic Republic",
+    "Lao PeopleÃ¢â‚¬â„¢s Democratic Republic",
     "Latvia",
     "Lebanon",
     "Lesotho",
