@@ -3,7 +3,7 @@ var button = $("button");
 var userInput;
 
 text.on("input", function () {
-    return (userInput = text.val());
+    userInput = text.val();
 });
 
 function IsJsonString(userInput) {
