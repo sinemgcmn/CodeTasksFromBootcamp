@@ -1,0 +1,60 @@
+body {
+    background-color: black;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    height: 30%;
+    width: 100%;
+}
+
+.spotify {
+    color: #1db954;
+}
+
+.container {
+    display: flex;
+
+    justify-content: flex-start;
+}
+
+input {
+    height: 30px;
+    width: 200px;
+    background-color: lightgray;
+}
+
+select {
+    height: 35px;
+    width: 200px;
+    background-color: lightgray;
+}
+
+.submit-button {
+    width: 75px;
+    background-color: lightgray;
+}
+
+.results-container {
+    display: flex;
+    flex-direction: column;
+}
+
+img {
+    height: 150px;
+    width: 150px;
+}
+
+div {
+    color: white;
+}
+
+p {
+    color: white;
+    font-size: 25px;
+}
+
+.more {
+    display: flex;
+}
