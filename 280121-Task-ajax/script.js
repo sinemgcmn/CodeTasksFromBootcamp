@@ -1,8 +1,9 @@
-(function (countries) {
+(function () {
     // console.log("countries", countries);
     var resultsContainer = $(".results");
     var searchField = $("input");
 
+    //ajax part
     searchField.on("input", function () {
         var userInput = searchField.val().toLowerCase();
         $.ajax({
