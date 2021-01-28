@@ -47,7 +47,7 @@
         } else {
             for (var i = 0; i < response.items.length; i++) {
                 var defaultImage =
-                    "https://bitsofco.de/content/images/2018/12/broken-1.png";
+                    "https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png";
 
                 if (response.items[i].images.length > 0) {
                     defaultImage = response.items[i].images[0].url;

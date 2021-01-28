@@ -1,5 +1,6 @@
 body {
     background-color: black;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 header {
@@ -14,9 +15,7 @@ header {
 }
 
 .container {
-    display: flex;
-
-    justify-content: flex-start;
+    height: 70px;
 }
 
 input {
@@ -33,12 +32,15 @@ select {
 
 .submit-button {
     width: 75px;
-    background-color: lightgray;
+
+    background-color: #1db954;
 }
 
 .results-container {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 30px 20px;
 }
 
 img {
@@ -56,5 +58,10 @@ p {
 }
 
 .more {
-    display: flex;
+    width: 75px;
+    height: 30px;
+    position: relative;
+    left: 50%;
+
+    background-color: #1db954;
 }
