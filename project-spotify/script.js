@@ -1,86 +1,93 @@
 (function () {
     var more = $(".more");
     more.hide();
-    var nextUrl;
+    var nextUrl = "";
+    var userInput;
+    var artistOrAlbum;
 
+    //submit button check
     $(".submit-button").on("click", function () {
-        var userInput = $("input").val();
-        var artistOrAlbum = $("select").val();
-        // console.log("user data:", userInput, "-", artistOrAlbum);
+        //console.log('I clicked the button')
+        userInput = $("input").val();
+        // console.log(userInput);
+        artistOrAlbum = $("select").val();
+        // console.log(artistOrAlbum);
+        makeAjaxRequest("https://spicedify.herokuapp.com/spotify");
+    });
+
+    more.on("click", function () {
+        // console.log("I clicked the more button");
+        makeAjaxRequest(nextUrl, true);
+    });
+
+    function makeAjaxRequest(urlToMakeRequestTo, moreButtonClicked) {
         $.ajax({
             method: "GET",
-            url: "https://spicedify.herokuapp.com/spotify",
+            url: urlToMakeRequestTo,
             data: {
                 query: userInput,
                 type: artistOrAlbum,
             },
             success: function (response) {
-                callSpotify(response, userInput);
-            },
-        });
-    });
+                response = response.artists || response.albums;
+                // console.log(response);
 
-    $(".more").on("click", function () {
-        var userInput = $("input").val();
-        var artistOrAlbum = $("select").val();
-        $.ajax({
-            method: "GET",
-            url: nextUrl,
-            data: {
-                query: userInput,
-                type: artistOrAlbum,
-            },
-            success: function (response) {
-                callSpotify(response, userInput);
-            },
-        });
-    });
-
-    function callSpotify(response, userInput) {
-        response = response.artists || response.albums;
-        console.log("response:", response);
-        var resultsHtml = "";
-        resultsHtml = "<p>" + 'Results for "' + userInput + '" 🎃 ' + "</p>";
-
-        if (response.items.length == 0) {
-            resultsHtml += "<p>Nothing to see here...</p>";
-        } else {
-            for (var i = 0; i < response.items.length; i++) {
-                var defaultImage =
-                    "https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png";
-
-                if (response.items[i].images.length > 0) {
-                    defaultImage = response.items[i].images[0].url;
+                //adding next 20 to the end of the first batch
+                var resultsHtml = callSpotify(response.items);
+                if (moreButtonClicked) {
+                    $(".results-container").append(resultsHtml);
+                } else {
+                    $(".results-container").html(resultsHtml);
                 }
-                var exUrl = response.items[i].external_urls.spotify;
 
-                resultsHtml +=
-                    "<a href=" +
-                    exUrl +
-                    '">' +
-                    "<div>" +
-                    response.items[i].name +
-                    "</div>" +
-                    '<img src="' +
-                    defaultImage +
-                    '"/> </a>';
+                //getting next 20 by replacing the url
+                nextUrl =
+                    response.next &&
+                    response.next.replace(
+                        "api.spotify.com/v1/search",
+                        "spicedify.herokuapp.com/spotify"
+                    );
+
+                //if there is no next batch, do not show the more button, otherwise show it
+                if (response.next == null) {
+                    more.css("display", "none");
+                } else {
+                    more.toggle();
+                }
+            },
+        });
+    }
+
+    function callSpotify(items) {
+        var resultsHtml = "";
+
+        if (items.length > 0) {
+            resultsHtml =
+                "<p>" + 'Results for "' + userInput + '" 🎃 ' + "</p>";
+        } else if (items.length == 0) {
+            resultsHtml += "<p>Nothing to see here...</p>";
+        }
+
+        for (var i = 0; i < items.length; i++) {
+            var defaultImage =
+                "https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png";
+
+            if (items[i].images.length > 0) {
+                defaultImage = items[i].images[0].url;
             }
-        }
-        $(".results-container").html(resultsHtml);
-        // console.log("response.next:", response.next);
+            var exUrl = items[i].external_urls.spotify;
 
-        ///More button check
-
-        if (response.next == null) {
-            more.css("display", "none");
-        } else {
-            more.toggle();
-            nextUrl =
-                response.next &&
-                response.next.replace(
-                    "api.spotify.com/v1/search",
-                    "spicedify.herokuapp.com/spotify"
-                );
+            resultsHtml +=
+                "<a href=" +
+                exUrl +
+                '">' +
+                "<div>" +
+                items[i].name +
+                "</div>" +
+                '<img src="' +
+                defaultImage +
+                '"/> </a>';
         }
+        return resultsHtml;
     }
 })();
