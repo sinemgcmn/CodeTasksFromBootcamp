@@ -1,6 +1,8 @@
 body {
-    background-color: black;
+    background-image: url("assets/music.jpeg");
+    background-size: cover;
     font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
 }
 
 header {
@@ -12,8 +14,13 @@ header {
 
 .spotify {
     color: #1db954;
+    font-size: 40px;
 }
 
+.motto {
+    padding: 10px;
+    color: white;
+}
 .container {
     display: flex;
     justify-content: center;
@@ -36,15 +43,15 @@ select {
 .submit-button {
     width: 75px;
     height: 30px;
-    margin: 0 30px;
+    margin: 0 10px;
     background-color: #1db954;
 }
 
 .results-container {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 30px 20px;
-    margin: 0 75px;
+    margin: 25px 150px;
 }
 
 img {
@@ -58,7 +65,8 @@ div {
 
 p {
     color: white;
-    font-size: 25px;
+    font-size: 15px;
+    display: inline-block;
 }
 
 .more {
