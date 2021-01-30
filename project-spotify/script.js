@@ -47,10 +47,15 @@
                         "api.spotify.com/v1/search",
                         "spicedify.herokuapp.com/spotify"
                     );
+                console.log(response.next);
 
                 //if there is no next batch, do not show the more button, otherwise show it
                 if (response.next == null) {
                     more.css("display", "none");
+                }
+                if (location.search.indexOf("scroll=infinite") > -1) {
+                    more.css("display", "none");
+                    infiniteCheck();
                 } else {
                     more.toggle();
                 }
@@ -62,15 +67,14 @@
         var resultsHtml = "";
 
         if (items.length > 0) {
-            resultsHtml =
-                "<p>" + 'Results for "' + userInput + '" 🎃 ' + "</p>";
+            resultsHtml = "<p>" + 'Results for "' + userInput + '"🎺' + "</p>";
         } else if (items.length == 0) {
             resultsHtml += "<p>Nothing to see here...</p>";
         }
 
         for (var i = 0; i < items.length; i++) {
             var defaultImage =
-                "https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png";
+                "https://www.scdn.co/i/_global/twitter_card-default.jpg";
 
             if (items[i].images.length > 0) {
                 defaultImage = items[i].images[0].url;
@@ -90,4 +94,18 @@
         }
         return resultsHtml;
     }
+
+    function infiniteCheck() {
+        var reachedBottom =
+            $(window).scrollTop() + $(window).height() >=
+            $(document).height() - 300;
+
+        console.log("reachedBottom: ", reachedBottom);
+        if (reachedBottom) {
+            makeAjaxRequest(nextUrl, true);
+        } else {
+            setTimeout(infiniteCheck, 1000);
+        }
+    }
+    infiniteCheck();
 })();
