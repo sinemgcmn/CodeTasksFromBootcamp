@@ -31,7 +31,13 @@
             success: function (response) {
                 response = response.artists || response.albums;
                 // console.log(response);
-
+                if (response.items.length) {
+                    $("#result").html(
+                        'Results for "' + userInput + '"' + "🎤 "
+                    );
+                } else {
+                    $("#result").html("No results found!");
+                }
                 //adding next 20 to the end of the first batch
                 var resultsHtml = callSpotify(response.items);
                 if (moreButtonClicked) {
@@ -66,12 +72,6 @@
     function callSpotify(items) {
         var resultsHtml = "";
 
-        if (items.length > 0) {
-            resultsHtml = "<p>" + 'Results for "' + userInput + '"🎺' + "</p>";
-        } else if (items.length == 0) {
-            resultsHtml += "<p>Nothing to see here...</p>";
-        }
-
         for (var i = 0; i < items.length; i++) {
             var defaultImage =
                 "https://www.scdn.co/i/_global/twitter_card-default.jpg";
@@ -100,7 +100,7 @@
             $(window).scrollTop() + $(window).height() >=
             $(document).height() - 300;
 
-        console.log("reachedBottom: ", reachedBottom);
+        // console.log("reachedBottom: ", reachedBottom);
         if (reachedBottom) {
             makeAjaxRequest(nextUrl, true);
         } else {
