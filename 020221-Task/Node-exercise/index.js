@@ -1,5 +1,5 @@
 var myUrl = process.argv[2];
-// console.log(myUrl);
+
 
 function getAndParse(newUrl) {
     const url = require("url");
