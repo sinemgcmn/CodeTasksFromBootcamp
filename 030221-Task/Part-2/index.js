@@ -17,7 +17,5 @@ function mapSizes(pathToDirectory) {
     return newObj;
 }
 
-// mapSizes("/Users/sinemgocmenuyarer/desktop/Part-2");
-// fs.writeFileSync("files.json", JSON.stringify(mapSizes, null, 4));
-const sizeMap = mapSizes("/Users/aceeegimmnnorrsuy / desktop / Part - 2");
+const sizeMap = mapSizes("/Users/sinemgocmenuyarer/desktop/Part-2");
 fs.writeFileSync("files.json", JSON.stringify(sizeMap, null, 4));
