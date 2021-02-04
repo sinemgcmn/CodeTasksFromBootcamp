@@ -1,11 +1,24 @@
-//Require the http module
+const fs = require("fs");
 const http = require("http");
 
 //Use the createServer method of that module to create your server. You can pass a request listener (a function that handles requests) to that function.
 const server = http.createServer((request, response) => {
+    let data =
+        new Date() +
+        "\t" +
+        request.method +
+        "\t" +
+        request.url +
+        "\t" +
+        request.headers;
+    fs.appendFile("requests.txt", data, (err) => {
+        if (err) throw err;
+        console.log("Appending the file");
+    });
     let body = "";
     //The request object will have method, url, and headers properties.
     const { headers, method, url } = request;
+
     //You should listen for 'error' events on both
     request.on("error", (err) => console.log(err));
     response.on("error", (err) => console.log(err));
