@@ -1,0 +1,108 @@
+* {
+    margin: 0;
+    /*no boxsizin this time*/
+}
+
+.connect-four {
+    display: flex;
+    height: 100px;
+    justify-content: center;
+}
+
+#connect {
+    font-size: 45px;
+    color: #e07a5f;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+#board {
+    display: flex;
+}
+
+.slot {
+    /* background-color: blue; */
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
+
+.hole {
+    /* background-color: antiquewhite; */
+    height: 80px;
+    width: 80px;
+    transform: translate(-30px, -30px);
+    border: 40px solid #3d405b;
+    border-radius: 50%;
+}
+@keyframes moveInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(-300px);
+    }
+
+    80% {
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+/*these are the classes that js will add*/
+.player1 {
+    background-color: #81b29a;
+    animation-name: moveInUp;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+}
+
+.player2 {
+    background-color: #f2cc8f;
+    animation-name: moveInUp;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+}
+
+h1 {
+    position: absolute;
+    left: 24px;
+    top: 22px;
+    font-style: italic;
+    font-size: 24px;
+    color: #3d405b;
+}
+
+.button {
+    position: absolute;
+    top: 35px;
+    left: 200px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    background-color: #e07a5f;
+}
+
+#popup {
+    display: block;
+    padding: 10px;
+    height: 200px;
+    width: 500px;
+    background-color: #f2cc8f;
+    border-radius: 10px;
+    position: absolute;
+    top: 33%;
+    left: 33%;
+    z-index: 9;
+    font-size: 22px;
+}
+
+#x {
+    color: blue;
+    float: right;
+    margin: 0 10px;
+}
