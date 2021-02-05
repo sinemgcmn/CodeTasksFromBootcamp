@@ -5,6 +5,16 @@ const fs = require("fs");
 //It is a module contains several helper functions to help make path manipulation easier.
 const path = require("path");
 
+const contentType = {
+    ".html": "text/html",
+    ".css": "text/css",
+    ".js": "text/javascript",
+    ".json": " application/json",
+    ".jpg": "image/jpeg",
+    ".png": "image/png",
+    ".svg": "image/svg + xml",
+};
+
 http.createServer((req, res) => {
     req.on("error", (err) => console.log(" err in req:", err));
     res.on("error", (err) => console.log(" err in req:", err));
@@ -59,19 +69,22 @@ http.createServer((req, res) => {
                     return res.end();
                 });
             } else {
-                // we simply want to redirect the user to the req.url, but add a slash to it
-                // you did this business of redirecting yesterday with http-request-listners
-                // remember to set your headers, send your status code and end your response
+                res.statusCode = 302;
+                res.setHeader("Location", req.url + "/");
+                // console.log(" you are being redirected!");
+                res.end();
+                return;
             }
         } else {
-            console.log("user requested a file:", requestedFilePath);
-            // this means we want to stream and pipe the requested file
-            // to figure out the correct headers to set
-            console.log(
-                "file ext of requested file is:",
-                path.extname(requestedFilePath)
-            );
-            res.setHeader("Content-Type", "text/css"); // CAREFUL YOU WANT TO  MAKE THIS DYNAMIC
+            const readStreamFile = fs.createReadStream(requestedFilePath);
+            let ext = path.extname(requestedFilePath);
+            res.setHeader("content-type", contentType[ext]);
+            readStreamFile.pipe(res);
+            readStreamFile.on("error", (err) => {
+                console.log("err in readStreamFile", err);
+                res.statusCode = 500; // The server has encountered a situation it doesn't know how to handle.
+                return res.end();
+            });
         }
     });
 }).listen(8080, () => console.log(" I m listening"));
