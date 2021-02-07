@@ -4,6 +4,8 @@ const http = require("http");
 const fs = require("fs");
 //It is a module contains several helper functions to help make path manipulation easier.
 const path = require("path");
+const { projectOverviewList } = require("./module");
+console.log(projectOverviewList());
 
 const contentType = {
     ".html": "text/html",
