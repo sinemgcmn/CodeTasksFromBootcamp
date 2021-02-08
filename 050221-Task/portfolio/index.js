@@ -42,6 +42,11 @@ http.createServer((req, res) => {
         console.log("YOU SHALL NOT PASS!");
         return res.end();
     }
+    if (req.url === "/") {
+        // console.log("hallo");
+        const myHTML = projectOverviewList();
+        return res.end(myHTML);
+    }
 
     // /The fs.stat() method is used to return information about the given file or directory. It returns an fs.Stat
     //OBJECT which has several properties and methods to get details about the file or directory.
