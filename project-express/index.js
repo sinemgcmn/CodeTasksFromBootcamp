@@ -1,7 +1,21 @@
 const express = require("express");
 const app = express();
 const cookieParser = require("cookie-parser");
+const basicAuth = require("basic-auth");
+const auth = function (req, res, next) {
+    const creds = basicAuth(req);
+    if (!creds || creds.name != "myUser" || creds.pass != "opensesame") {
+        res.setHeader(
+            "WWW-Authenticate",
+            'Basic realm="Enter your credentials to see this stuff."'
+        );
+        res.sendStatus(401);
+    } else {
+        next();
+    }
+};
 
+app.use("/project-pane", [auth, express.static("/project-pane")]);
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
@@ -20,7 +34,7 @@ app.get("/", (req, res) => {
 
 app.use(express.static("./projects"));
 
-app.get("/cookies", (req, res, next) => {
+app.get("/cookies", (req, res) => {
     res.send(`
         <h2>
         We use cookies to personalise content and ads, to provide social media features and to analyse our traffic.
