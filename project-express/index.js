@@ -5,7 +5,22 @@ const cookieParser = require("cookie-parser");
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.get("/cookies", (req, res) => {
+app.use((req, res, next) => {
+    if (req.url == "/cookies" || req.cookies.authenticated) {
+        next();
+    } else {
+        res.cookie("lastUrl", req.url);
+        res.redirect("/cookies");
+    }
+});
+
+app.get("/", (req, res) => {
+    res.send("hello");
+});
+
+app.use(express.static("./projects"));
+
+app.get("/cookies", (req, res, next) => {
     res.send(`
         <h2>
         We use cookies to personalise content and ads, to provide social media features and to analyse our traffic.
@@ -23,30 +38,14 @@ app.get("/cookies", (req, res) => {
 
 app.post("/cookies", (req, res) => {
     const { accept } = req.body;
-    console.log("req.body: ", req.body);
     if (accept) {
         res.cookie("authenticated", "true");
-        res.redirect("/" + req.url);
+        res.redirect(req.cookies.lastUrl);
     } else {
         res.send(`
-            <h1>Sorry, you cannot use this site without accepting cookies</h1>
+            <h1>Sorry, you cannot use this website without accepting cookies</h1>
         `);
     }
-});
-
-app.use(express.static("./projects"));
-
-app.use((req, res, next) => {
-    let userUrl = `${req.url}`;
-
-    if (
-        userUrl != "/cookies" &&
-        userUrl != "/" &&
-        userUrl == "./projects" + userUrl
-    ) {
-    }
-    res.redirect("/cookies");
-    next();
 });
 
 app.listen(8080, () => console.log("I am listening"));
