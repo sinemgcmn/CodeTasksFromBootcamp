@@ -1,0 +1,22 @@
+[
+    {
+        "title": "Project Spotify",
+        "directory": "project-spotify"
+    },
+    {
+        "title": "Project Ticker",
+        "directory": "project-ticker"
+    },
+    {
+        "title": "Project Spiced",
+        "directory": "project-spiced"
+    },
+    {
+        "title": "Project Pane",
+        "directory": "project-Pane"
+    },
+    {
+        "title": "Project Connect Four",
+        "directory": "project-connect-four"
+    }
+]
