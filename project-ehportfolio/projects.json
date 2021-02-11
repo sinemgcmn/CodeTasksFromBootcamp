@@ -1,22 +1,27 @@
 [
     {
         "title": "Project Spotify",
-        "directory": "project-spotify"
+        "directory": "project-spotify",
+        "description": "I am quite proud of this project and I had a really great time working on it."
     },
     {
         "title": "Project Ticker",
-        "directory": "project-ticker"
+        "directory": "project-ticker",
+        "description": "I am quite proud of this project and I had a really great time working on it."
     },
     {
         "title": "Project Spiced",
-        "directory": "project-spiced"
+        "directory": "project-spiced",
+        "description": "I am quite proud of this project and I had a really great time working on it."
     },
     {
         "title": "Project Pane",
-        "directory": "project-Pane"
+        "directory": "project-pane",
+        "description": "I am quite proud of this project and I had a really great time working on it."
     },
     {
         "title": "Project Connect Four",
-        "directory": "project-connect-four"
+        "directory": "project-connect-four",
+        "description": "I am quite proud of this project and I had a really great time working on it."
     }
 ]

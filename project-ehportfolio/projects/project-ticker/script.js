@@ -6,7 +6,7 @@
     var linkWidth = links.eq(0).outerWidth();
     var animId;
 
-    headlines.on("mouseenter", function (e) {
+    headlines.on("mouseenter", function () {
         cancelAnimationFrame(animId);
     });
 

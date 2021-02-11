@@ -16,4 +16,22 @@ app.get("/", (req, res) => {
     });
 });
 
+app.get("/project/:project/", (req, res) => {
+    const project = req.params.project;
+    console.log(project);
+    const selectedProject = myProjects.find(
+        (item) => item.directory == project
+    );
+    console.log(selectedProject);
+    if (!selectedProject) {
+        return res.sendStatus(404);
+    }
+    {
+        res.render("description", {
+            myProjects,
+            selectedProject,
+        });
+    }
+});
+
 app.listen(8080, () => console.log("Server Running!"));

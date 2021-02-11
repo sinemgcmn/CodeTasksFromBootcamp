@@ -1,0 +1,15 @@
+<h2>My Projects</h2>
+<ul class="myList"> 
+<li>{{>projList}}</li>
+</ul>
+
+
+{{#selectedProject}}
+<div class="box">
+<h1>{{title}}</h1>
+<img src="/{{directory}}/screenshot.png" width="500px" height="400px">
+<h3>{{description}}</h3>
+</div>
+{{/selectedProject}}
+
+

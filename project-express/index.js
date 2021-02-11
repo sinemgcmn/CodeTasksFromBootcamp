@@ -16,7 +16,7 @@ const auth = function (req, res, next) {
 };
 
 app.use("/project-pane", [auth, express.static("/project-pane")]);
-app.use(express.urlencoded({ extended: false }));
+// app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use((req, res, next) => {
@@ -52,6 +52,7 @@ app.get("/cookies", (req, res) => {
 
 app.post("/cookies", (req, res) => {
     const { accept } = req.body;
+    console.log(req.body);
     if (accept) {
         res.cookie("authenticated", "true");
         res.redirect(req.cookies.lastUrl);
