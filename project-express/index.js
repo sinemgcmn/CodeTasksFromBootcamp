@@ -16,7 +16,7 @@ const auth = function (req, res, next) {
 };
 
 app.use("/project-pane", [auth, express.static("/project-pane")]);
-// app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use((req, res, next) => {
