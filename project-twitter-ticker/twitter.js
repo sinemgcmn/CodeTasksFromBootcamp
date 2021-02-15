@@ -2,8 +2,6 @@ const { twitterKey, twitterSecret } = require("./secrets");
 // above we are requiring the secret authentication info from the secrets.json
 
 const https = require("https");
-const { parse } = require("path");
-const { text } = require("express");
 
 module.exports.getToken = function getToken(callbackToken) {
     console.log("running getToken");
